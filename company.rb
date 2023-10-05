@@ -20,7 +20,7 @@ class Company
   end
 
   def active_users
-    users.select { |user| user.active_status }.each { |user| user.top_up_tokens }
+    users.select { |user| user.active_status }
   end
 
   def users

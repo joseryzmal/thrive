@@ -32,7 +32,10 @@ class Challenge
   def set_associations
     @companies.each do |company|
       company.users = @users.select { |user| user.company_id == company.id }
-      company.users.each { |user| user.company = company }
+      company.users.each do |user|
+        user.company = company
+        user.top_up_tokens
+      end
     end
   end
 

@@ -1,5 +1,5 @@
 class User
-  attr_reader :id, :company_id, :last_name, :first_name, :email, :active_status, :email_status, :tokens, :new_tokens
+  attr_reader :id, :company_id, :last_name, :first_name, :email, :active_status, :email_status
   attr_accessor :company
 
   def initialize(params)
@@ -16,13 +16,13 @@ class User
   end
 
   def top_up_tokens
-    @new_tokens = @tokens + company.top_up if company
+    @new_tokens = @tokens + company.top_up if company && active_status
   end
 
   def display_balance
     %{
     #{last_name}, #{first_name}, #{email}
-      Previous Token Balance, #{tokens}
-      New Token Balance #{new_tokens}}
+      Previous Token Balance, #{@tokens}
+      New Token Balance #{@new_tokens}}
   end
 end
